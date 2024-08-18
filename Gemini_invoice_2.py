@@ -101,7 +101,7 @@ def main():
             if response:
                 st.session_state.gemini_response = response
                 st.session_state.stage = 'result'
-            st.st.rerun()
+            st.rerun()
 
     elif st.session_state.stage == 'result':
         st.image(st.session_state.captured_image, caption='Image', use_column_width=True)

@@ -69,7 +69,7 @@ def main():
             if upload is not None:
                 st.session_state.captured_image = Image.open(upload)
                 st.session_state.stage = 'process'
-                st.experimental_rerun()
+                st.rerun()
         
         elif image_source == "Take Photo":
             st.write("Webcam Live Feed")
@@ -83,7 +83,7 @@ def main():
                 st.session_state.captured_image = Image.fromarray(frame)
                 st.session_state.stage = 'process'
                 camera.release()
-                st.experimental_rerun()
+                st.rerun()
             else:
                 while not capture_button:
                     _, frame = camera.read()
@@ -101,7 +101,7 @@ def main():
             if response:
                 st.session_state.gemini_response = response
                 st.session_state.stage = 'result'
-            st.experimental_rerun()
+            st.st.rerun()
 
     elif st.session_state.stage == 'result':
         st.image(st.session_state.captured_image, caption='Image', use_column_width=True)
@@ -109,7 +109,7 @@ def main():
         st.write(st.session_state.gemini_response)
         if st.button('Start Over', key='start_over_button'):
             reset_state()
-            st.experimental_rerun()
+            st.rerun()
 
 if __name__ == "__main__":
     main()
